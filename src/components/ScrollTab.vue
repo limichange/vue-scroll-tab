@@ -36,8 +36,13 @@ export default {
         }
       })
 
-      sTab.scrollLeft = item.left + (item.width / 2) - (sTab.offsetWidth / 2)
+      this.active(item.index)
       this.$emit('click', item)
+    },
+    active (index) {
+      const item = this.itemInfos[index]
+      const left = item.left + (item.width / 2) - (this.$refs.sTab.offsetWidth / 2)
+      this.smoothScroll(left)
     },
     fixWidth () {
       this.$nextTick(() => {
@@ -52,6 +57,26 @@ export default {
           this.wrapWidth += elm.offsetWidth
         })
       })
+    },
+    smoothScroll (to) {
+      const self = this
+      const scroller = this.$refs.sTab
+      let from = scroller.scrollLeft
+
+      const direction = to - from > 0 ? 'bottom' : 'top'
+      this.scrolling = true
+      const intervalId = setInterval(() => {
+        if (Math.abs(from - to) <= 20) {
+          clearInterval(intervalId)
+          scroller.scrollLeft = to
+          self.scrolling = false
+        } else {
+          let r = (to - from) / 3
+          r = Math.abs(r) > 20 ? r : direction === 'bottom' ? 20 : -20
+          from += r
+          scroller.scrollLeft = from
+        }
+      }, 16.7)
     }
   }
 }

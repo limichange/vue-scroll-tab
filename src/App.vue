@@ -14,6 +14,9 @@
     </div>
 
     <button @click="click">Add div</button>
+    <button @click="active(5)">Active 5</button>
+    <button @click="active(10)">Active 10</button>
+    <button @click="active(15)">Active 15</button>
   </div>
 </template>
 
@@ -31,8 +34,10 @@ export default {
     }
   },
   methods: {
+    active (index) {
+      this.$refs.ScrollTab.active(index)
+    },
     scrollTabClick () {
-
     },
     click () {
       this.testData.push(0)
