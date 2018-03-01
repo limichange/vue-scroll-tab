@@ -1,0 +1,91 @@
+{
+  "name": "vue-scroll-tab",
+  "version": "0.0.1",
+  "description": "vue-scroll-tab",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build src/components/index.js --target lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limichange/vue-scroll-tab.git"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "author": "limichange<limichange@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/limichange/vue-scroll-tab/issues"
+  },
+  "homepage": "https://github.com/limichange/vue-scroll-tab#readme",
+  "dependencies": {
+    "vue": "^2.5.13"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.0-beta.1",
+    "@vue/cli-plugin-eslint": "^3.0.0-beta.1",
+    "@vue/cli-service": "^3.0.0-beta.1",
+    "@vue/eslint-config-standard": "^3.0.0-beta.1",
+    "@vue/test-utils": "^1.0.0-beta.12",
+    "jest": "^22.4.2",
+    "jest-serializer-vue": "^0.3.0",
+    "less": "^3.0.1",
+    "less-loader": "^4.0.6",
+    "vue-jest": "^1.4.0",
+    "vue-server-renderer": "^2.5.13",
+    "vue-template-compiler": "^2.5.13"
+  },
+  "vue": {
+    "lintOnSave": true
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
+    ]
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "plugin:vue/recommended",
+      "@vue/standard"
+    ]
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "modules": false
+        }
+      ]
+    ],
+    "env": {
+      "test": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "node": "current"
+              }
+            }
+          ]
+        ]
+      }
+    }
+  }
+}
