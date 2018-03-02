@@ -83,6 +83,13 @@ module.exports = __webpack_require__("bGai");
 
 /***/ }),
 
+/***/ "JhoC":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "bGai":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -154,27 +161,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     smoothScroll: function smoothScroll(to) {
-      var self = this;
+      var _this2 = this;
+
+      var mode = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'h';
       var scroller = this.$refs.sTab;
-      var from = scroller.scrollLeft;
-      var direction = to - from > 0 ? 'bottom' : 'top';
+      var isH = mode === 'h';
+      var scorllType = isH ? 'scrollLeft' : 'scrollTop';
+      var from = scroller[scorllType];
       this.scrolling = true;
       var intervalId = setInterval(function () {
         if (Math.abs(from - to) <= 20) {
           clearInterval(intervalId);
-          scroller.scrollLeft = to;
-          self.scrolling = false;
+          scroller[scorllType] = to;
+          _this2.scrolling = false;
         } else {
           var r = (to - from) / 3;
-          r = Math.abs(r) > 20 ? r : direction === 'bottom' ? 20 : -20;
+          r = Math.abs(r) > 20 ? r : to - from > 0 ? 20 : -20;
           from += r;
-          scroller.scrollLeft = from;
+          scroller[scorllType] = from;
         }
       }, 16.7);
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-4f7cc99c","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/ScrollTab.vue
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-3fdf59fc","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/ScrollTab.vue
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"sTab",staticClass:"sTab",on:{"click":_vm.clickHandle}},[_c('div',{staticClass:"sTabWrap",style:({ width: (_vm.wrapWidth + "px") })},[_vm._t("default")],2)])}
 var staticRenderFns = []
 
@@ -283,7 +293,7 @@ function normalizeComponent (
 
 // CONCATENATED MODULE: ./src/components/ScrollTab.vue
 function injectStyle (context) {
-  __webpack_require__("srS7")
+  __webpack_require__("JhoC")
 }
 /* script */
 
@@ -323,13 +333,6 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 /* harmony default export */ var components = __webpack_exports__["default"] = (components_ScrollTab);
-
-/***/ }),
-
-/***/ "srS7":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 
