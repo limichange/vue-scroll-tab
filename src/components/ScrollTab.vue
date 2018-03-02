@@ -58,23 +58,25 @@ export default {
         })
       })
     },
-    smoothScroll (to) {
-      const self = this
+    smoothScroll (to, mode = 'h') {
       const scroller = this.$refs.sTab
-      let from = scroller.scrollLeft
+      const isH = mode === 'h'
+      const scorllType = isH ? 'scrollLeft' : 'scrollTop'
+      let from = scroller[scorllType]
 
-      const direction = to - from > 0 ? 'bottom' : 'top'
       this.scrolling = true
       const intervalId = setInterval(() => {
         if (Math.abs(from - to) <= 20) {
           clearInterval(intervalId)
-          scroller.scrollLeft = to
-          self.scrolling = false
+          scroller[scorllType] = to
+          this.scrolling = false
         } else {
           let r = (to - from) / 3
-          r = Math.abs(r) > 20 ? r : direction === 'bottom' ? 20 : -20
+          r = Math.abs(r) > 20
+            ? r
+            : to - from > 0 ? 20 : -20
           from += r
-          scroller.scrollLeft = from
+          scroller[scorllType] = from
         }
       }, 16.7)
     }
