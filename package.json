@@ -1,6 +1,6 @@
 {
   "name": "vue-scroll-tab",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "vue-scroll-tab",
   "main": "dist/vue-scroll-tab.common.js",
   "scripts": {
