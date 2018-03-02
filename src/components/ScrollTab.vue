@@ -88,9 +88,6 @@ export default {
 .sTab {
   width: 100%;
   overflow: auto;
-  display: block;
-  overflow: hidden;
-  overflow-x: auto;
   overflow-scrolling: touch;
 
   .sTabWrap {
