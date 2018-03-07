@@ -4,7 +4,6 @@
     class="sTab"
     @click="clickHandle">
     <div
-      :style="{ width: `${wrapWidth}px` }"
       class="sTabWrap">
       <slot />
     </div>
@@ -16,7 +15,7 @@ export default {
   name: 'ScrollTab',
   data () {
     return {
-      wrapWidth: 0,
+      wrapWidth: 100000,
       itemInfos: []
     }
   },
@@ -46,37 +45,43 @@ export default {
     },
     fixWidth () {
       this.$nextTick(() => {
+        if (!this.$slots.default) {
+          return
+        }
+
         this.positionList = []
-        this.wrapWidth = 0
+        let tempWidth = 0
+
         this.$slots.default.forEach(({ elm }, index) => {
+          const rect = elm.getBoundingClientRect()
           this.itemInfos.push({
-            left: this.wrapWidth,
-            width: elm.offsetWidth,
+            left: tempWidth,
+            width: rect.width,
             index
           })
-          this.wrapWidth += elm.offsetWidth
+          tempWidth += rect.width
         })
+
+        this.wrapWidth = tempWidth
       })
     },
-    smoothScroll (to, mode = 'h') {
+    smoothScroll (to) {
+      const self = this
       const scroller = this.$refs.sTab
-      const isH = mode === 'h'
-      const scorllType = isH ? 'scrollLeft' : 'scrollTop'
-      let from = scroller[scorllType]
+      let from = scroller.scrollLeft
 
+      const direction = to - from > 0 ? 'bottom' : 'top'
       this.scrolling = true
       const intervalId = setInterval(() => {
         if (Math.abs(from - to) <= 20) {
           clearInterval(intervalId)
-          scroller[scorllType] = to
-          this.scrolling = false
+          scroller.scrollLeft = to
+          self.scrolling = false
         } else {
           let r = (to - from) / 3
-          r = Math.abs(r) > 20
-            ? r
-            : to - from > 0 ? 20 : -20
+          r = Math.abs(r) > 20 ? r : direction === 'bottom' ? 20 : -20
           from += r
-          scroller[scorllType] = from
+          scroller.scrollLeft = from
         }
       }, 16.7)
     }
@@ -88,12 +93,13 @@ export default {
 .sTab {
   width: 100%;
   overflow: auto;
+  display: block;
+  overflow: hidden;
+  overflow-x: auto;
   overflow-scrolling: touch;
 
-  .sTabWrap {
-    & > div {
-      display: inline-block;
-    }
+  .sTabWrap > * {
+    display: inline-block;
   }
 }
 </style>
