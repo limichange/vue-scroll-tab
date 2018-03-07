@@ -83,13 +83,6 @@ module.exports = __webpack_require__("bGai");
 
 /***/ }),
 
-/***/ "JhoC":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ "bGai":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -109,12 +102,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 /* harmony default export */ var ScrollTab = ({
   name: 'ScrollTab',
   data: function data() {
     return {
-      wrapWidth: 0,
+      wrapWidth: 100000,
       itemInfos: []
     };
   },
@@ -144,48 +136,52 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       this.$nextTick(function () {
+        if (!_this.$slots.default) {
+          return;
+        }
+
         _this.positionList = [];
-        _this.wrapWidth = 0;
+        var tempWidth = 0;
 
         _this.$slots.default.forEach(function (_ref, index) {
           var elm = _ref.elm;
+          var rect = elm.getBoundingClientRect();
 
           _this.itemInfos.push({
-            left: _this.wrapWidth,
-            width: elm.offsetWidth,
+            left: tempWidth,
+            width: rect.width,
             index: index
           });
 
-          _this.wrapWidth += elm.offsetWidth;
+          tempWidth += rect.width;
         });
+
+        _this.wrapWidth = tempWidth;
       });
     },
     smoothScroll: function smoothScroll(to) {
-      var _this2 = this;
-
-      var mode = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'h';
+      var self = this;
       var scroller = this.$refs.sTab;
-      var isH = mode === 'h';
-      var scorllType = isH ? 'scrollLeft' : 'scrollTop';
-      var from = scroller[scorllType];
+      var from = scroller.scrollLeft;
+      var direction = to - from > 0 ? 'bottom' : 'top';
       this.scrolling = true;
       var intervalId = setInterval(function () {
         if (Math.abs(from - to) <= 20) {
           clearInterval(intervalId);
-          scroller[scorllType] = to;
-          _this2.scrolling = false;
+          scroller.scrollLeft = to;
+          self.scrolling = false;
         } else {
           var r = (to - from) / 3;
-          r = Math.abs(r) > 20 ? r : to - from > 0 ? 20 : -20;
+          r = Math.abs(r) > 20 ? r : direction === 'bottom' ? 20 : -20;
           from += r;
-          scroller[scorllType] = from;
+          scroller.scrollLeft = from;
         }
       }, 16.7);
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-3fdf59fc","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/ScrollTab.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"sTab",staticClass:"sTab",on:{"click":_vm.clickHandle}},[_c('div',{staticClass:"sTabWrap",style:({ width: (_vm.wrapWidth + "px") })},[_vm._t("default")],2)])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-7a72be59","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/ScrollTab.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"sTab",staticClass:"sTab",on:{"click":_vm.clickHandle}},[_c('div',{staticClass:"sTabWrap"},[_vm._t("default")],2)])}
 var staticRenderFns = []
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/component-normalizer.js
@@ -293,7 +289,7 @@ function normalizeComponent (
 
 // CONCATENATED MODULE: ./src/components/ScrollTab.vue
 function injectStyle (context) {
-  __webpack_require__("JhoC")
+  __webpack_require__("myzs")
 }
 /* script */
 
@@ -333,6 +329,13 @@ if (typeof window !== 'undefined' && window.Vue) {
 }
 
 /* harmony default export */ var components = __webpack_exports__["default"] = (components_ScrollTab);
+
+/***/ }),
+
+/***/ "myzs":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 
