@@ -1,9 +1,7 @@
 <template>
   <div :class="$style.App">
     <div :class="$style.ScrollTab">
-      <ScrollTab
-        ref="ScrollTab"
-        @click="scrollTabClick">
+      <ScrollTab ref="ScrollTab">
         <div
           v-for="(item, index) in testData"
           :key="index"
@@ -17,6 +15,7 @@
     <button @click="active(5)">Active 5</button>
     <button @click="active(10)">Active 10</button>
     <button @click="active(15)">Active 15</button>
+    <button @click="fixWidth">fixWidth</button>
   </div>
 </template>
 
@@ -34,10 +33,11 @@ export default {
     }
   },
   methods: {
+    fixWidth () {
+      this.$refs.ScrollTab.fixWidth()
+    },
     active (index) {
       this.$refs.ScrollTab.active(index)
-    },
-    scrollTabClick () {
     },
     click () {
       this.testData.push(0)

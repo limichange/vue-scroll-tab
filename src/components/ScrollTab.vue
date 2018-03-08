@@ -4,6 +4,7 @@
     class="sTab"
     @click="clickHandle">
     <div
+      :style="{ width: `${wrapWidth}px` }"
       class="sTabWrap">
       <slot />
     </div>
