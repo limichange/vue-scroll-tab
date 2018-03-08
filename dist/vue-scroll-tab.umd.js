@@ -83,6 +83,13 @@ module.exports = __webpack_require__("bGai");
 
 /***/ }),
 
+/***/ "QoQu":
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ "bGai":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -114,19 +121,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     this.fixWidth();
   },
   methods: {
-    clickHandle: function clickHandle(e) {
-      var sTab = this.$refs.sTab;
-      var left = e.layerX + sTab.scrollLeft;
-      var item = this.itemInfos.find(function (info, index, itemInfos) {
-        if (!itemInfos[index + 1]) {
-          return info;
-        } else {
-          return info.left < left && itemInfos[index + 1].left > left;
-        }
-      });
-      this.active(item.index);
-      this.$emit('click', item);
-    },
     active: function active(index) {
       var item = this.itemInfos[index];
       var left = item.left + item.width / 2 - this.$refs.sTab.offsetWidth / 2;
@@ -180,8 +174,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     }
   }
 });
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-7a72be59","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/ScrollTab.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"sTab",staticClass:"sTab",on:{"click":_vm.clickHandle}},[_c('div',{staticClass:"sTabWrap"},[_vm._t("default")],2)])}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-6da7b3ba","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/ScrollTab.vue
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{ref:"sTab",staticClass:"sTab"},[_c('div',{staticClass:"sTabWrap",style:({ width: (_vm.wrapWidth + "px") })},[_vm._t("default")],2)])}
 var staticRenderFns = []
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/component-normalizer.js
@@ -289,7 +283,7 @@ function normalizeComponent (
 
 // CONCATENATED MODULE: ./src/components/ScrollTab.vue
 function injectStyle (context) {
-  __webpack_require__("myzs")
+  __webpack_require__("QoQu")
 }
 /* script */
 
@@ -317,25 +311,74 @@ var Component = normalizeComponent(
 
 /* harmony default export */ var components_ScrollTab = (Component.exports);
 
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"/Users/limichange/limiCode/vue-scroll-tab/node_modules/.cache/cache-loader"}!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/components/ScrollTabItem.vue
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ var ScrollTabItem = ({
+  name: 'ScrollTabItem',
+  props: {
+    index: {
+      type: Number,
+      default: 0
+    }
+  },
+  methods: {
+    click: function click() {
+      this.$parent.active(this.index);
+    }
+  }
+});
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-52658143","hasScoped":false,"optionsId":"0","buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/ScrollTabItem.vue
+var ScrollTabItem_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"ScrollTabItem",on:{"click":_vm.click}},[_vm._t("default")],2)}
+var ScrollTabItem_staticRenderFns = []
+
+// CONCATENATED MODULE: ./src/components/ScrollTabItem.vue
+/* script */
+
+
+/* template */
+
+/* template functional */
+var ScrollTabItem___vue_template_functional__ = false
+/* styles */
+var ScrollTabItem___vue_styles__ = null
+/* scopeId */
+var ScrollTabItem___vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var ScrollTabItem___vue_module_identifier__ = null
+
+var ScrollTabItem_Component = normalizeComponent(
+  ScrollTabItem,
+  ScrollTabItem_render,
+  ScrollTabItem_staticRenderFns,
+  ScrollTabItem___vue_template_functional__,
+  ScrollTabItem___vue_styles__,
+  ScrollTabItem___vue_scopeId__,
+  ScrollTabItem___vue_module_identifier__
+)
+
+/* harmony default export */ var components_ScrollTabItem = (ScrollTabItem_Component.exports);
+
 // CONCATENATED MODULE: ./src/components/index.js
 
 
-components_ScrollTab.install = function (Vue) {
-  Vue.component(components_ScrollTab.name, components_ScrollTab);
-};
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(components_ScrollTab);
+function install(Vue) {
+  Vue.component(components_ScrollTab.name, components_ScrollTab);
+  Vue.component(components_ScrollTabItem.name, components_ScrollTabItem);
 }
 
-/* harmony default export */ var components = __webpack_exports__["default"] = (components_ScrollTab);
-
-/***/ }),
-
-/***/ "myzs":
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
+components_ScrollTab.install = install;
+/* harmony default export */ var components = __webpack_exports__["default"] = ({
+  ScrollTab: components_ScrollTab,
+  ScrollTabItem: components_ScrollTabItem
+});
 
 /***/ })
 
