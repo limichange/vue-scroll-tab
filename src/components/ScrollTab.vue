@@ -25,7 +25,6 @@ export default {
   methods: {
     active (index) {
       const item = this.itemInfos[index]
-      alert(item.left)
       const left = item.left + (item.width / 2) - (this.$refs.sTab.offsetWidth / 2)
       this.smoothScroll(left)
     },
