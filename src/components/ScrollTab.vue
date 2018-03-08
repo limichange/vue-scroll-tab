@@ -25,7 +25,7 @@ export default {
   methods: {
     clickHandle (e) {
       const sTab = this.$refs.sTab
-      const left = e.layerX + sTab.scrollLeft
+      const left = e.pageX + sTab.scrollLeft
 
       const item = this.itemInfos.find((info, index, itemInfos) => {
         if (!itemInfos[index + 1]) {
@@ -96,6 +96,7 @@ export default {
   display: block;
   overflow: hidden;
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   overflow-scrolling: touch;
 
   .sTabWrap > * {
