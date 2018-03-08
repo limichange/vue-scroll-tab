@@ -79,8 +79,6 @@ export default {
   width: 100%;
   overflow: auto;
   display: block;
-  overflow: hidden;
-  overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   overflow-scrolling: touch;
 
