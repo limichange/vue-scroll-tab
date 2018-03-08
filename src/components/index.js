@@ -1,11 +1,12 @@
 import ScrollTab from './ScrollTab'
+import ScrollTabItem from './ScrollTabItem'
 
-ScrollTab.install = function (Vue) {
+export default function (Vue) {
   Vue.component(ScrollTab.name, ScrollTab)
+  Vue.component(ScrollTabItem.name, ScrollTabItem)
 }
 
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(ScrollTab)
+export default {
+  ScrollTab,
+  ScrollTabItem
 }
-
-export default ScrollTab

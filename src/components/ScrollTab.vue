@@ -1,8 +1,7 @@
 <template>
   <div
     ref="sTab"
-    class="sTab"
-    @click="clickHandle">
+    class="sTab">
     <div
       :style="{ width: `${wrapWidth}px` }"
       class="sTabWrap">
@@ -24,23 +23,9 @@ export default {
     this.fixWidth()
   },
   methods: {
-    clickHandle (e) {
-      const sTab = this.$refs.sTab
-      const left = e.pageX + sTab.scrollLeft
-
-      const item = this.itemInfos.find((info, index, itemInfos) => {
-        if (!itemInfos[index + 1]) {
-          return info
-        } else {
-          return info.left < left && itemInfos[index + 1].left > left
-        }
-      })
-
-      this.active(item.index)
-      this.$emit('click', item)
-    },
     active (index) {
       const item = this.itemInfos[index]
+      alert(item.left)
       const left = item.left + (item.width / 2) - (this.$refs.sTab.offsetWidth / 2)
       this.smoothScroll(left)
     },

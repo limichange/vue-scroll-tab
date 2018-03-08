@@ -2,12 +2,13 @@
   <div :class="$style.App">
     <div :class="$style.ScrollTab">
       <ScrollTab ref="ScrollTab">
-        <div
+        <ScrollTabItem
           v-for="(item, index) in testData"
           :key="index"
+          :index="index"
           :class="$style.item">
           DIV {{ index }}
-        </div>
+        </ScrollTabItem>
       </ScrollTab>
     </div>
 
@@ -21,11 +22,13 @@
 
 <script>
 import ScrollTab from './components/ScrollTab'
+import ScrollTabItem from './components/ScrollTabItem'
 
 export default {
   name: 'App',
   components: {
-    ScrollTab
+    ScrollTab,
+    ScrollTabItem
   },
   data () {
     return {
@@ -58,7 +61,7 @@ body, html {
 }
 
 .ScrollTab {
-  width: 600px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
